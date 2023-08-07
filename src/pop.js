@@ -1,15 +1,9 @@
-const { kIndex } = require('./tree-helpers')
-const { __bubbleDown } = require('./bubble-down')
+const { __remove } = require('./remove')
 const { compare, compareBy } = require('@kmamal/util/function/compare')
 
 
 const __pop = (arr, start, end, fnCmp) => {
-	const lastIndex = end - 1
-	const top = arr[start]
-	const last = arr[lastIndex]
-	arr[start] = last; last[kIndex] = 0
-	arr[lastIndex] = top; delete top[kIndex]
-	__bubbleDown(arr, start, lastIndex, start, fnCmp)
+	__remove(arr, start, end, 0, fnCmp)
 }
 
 

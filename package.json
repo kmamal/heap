@@ -13,6 +13,7 @@
     "./bubble-up": "./src/bubble-up.js",
     ".": "./src/index.js",
     "./pop": "./src/pop.js",
+    "./remove": "./src/remove.js",
     "./heapify": "./src/heapify.js",
     "./add": "./src/add.js",
     "./bubble-down": "./src/bubble-down.js"
