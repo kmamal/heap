@@ -1,16 +1,63 @@
 const { test } = require('@kmamal/testing')
-const { Heap } = require('.')
+const {
+	heapify,
+	pop,
+	heapifyBy,
+	popBy,
+	heapifyWith,
+	popWith,
+} = require('.')
 
-test("structs.Heap Heapsort", (t) => {
-	const a = [ 4, 7, 1, 3, 2, 9, 0, 5, 8, 6 ]
-	const expected = [ ...a ]
-	expected.sort()
+const { map } = require('@kmamal/util/array/map')
+const { sort } = require('@kmamal/util/array/sort')
 
-	const heap = new Heap(a.map((x) => [ x, x ]))
-	const result = []
-	while (heap.size) {
-		result.push(heap.pop().value)
+const N = 1000
+
+test("array.heap", (t) => {
+	const arr = new Array(N)
+	map.$$$(arr, Math.random)
+	const expected = sort(arr)
+
+	const sorted = new Array(N)
+	heapify(arr)
+	for (let i = 0; i < N; i++) {
+		sorted[i] = pop(arr)
 	}
 
-	t.equal(result, expected)
+	t.equal(arr.length, 0)
+	t.equal(sorted, expected)
+})
+
+test("array.heapBy", (t) => {
+	const arr = new Array(N)
+	map.$$$(arr, Math.random)
+	const expected = sort(arr)
+
+	const fn = (x) => 2 * x
+
+	const sorted = new Array(N)
+	heapifyBy(arr, fn)
+	for (let i = 0; i < N; i++) {
+		sorted[i] = popBy(arr, fn)
+	}
+
+	t.equal(arr.length, 0)
+	t.equal(sorted, expected)
+})
+
+test("array.heapWith", (t) => {
+	const arr = new Array(N)
+	map.$$$(arr, Math.random)
+	const expected = sort(arr)
+
+	const fn = (a, b) => a - b
+
+	const sorted = new Array(N)
+	heapifyWith(arr, fn)
+	for (let i = 0; i < N; i++) {
+		sorted[i] = popWith(arr, fn)
+	}
+
+	t.equal(arr.length, 0)
+	t.equal(sorted, expected)
 })

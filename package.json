@@ -9,7 +9,13 @@
   "license": "MIT",
   "main": "./src/index.js",
   "exports": {
-    ".": "./src/index.js"
+    "./tree-indexes": "./src/tree-indexes.js",
+    "./bubble-up": "./src/bubble-up.js",
+    ".": "./src/index.js",
+    "./pop": "./src/pop.js",
+    "./heapify": "./src/heapify.js",
+    "./add": "./src/add.js",
+    "./bubble-down": "./src/bubble-down.js"
   },
   "scripts": {
     "test": "npx @kmamal/testing",
