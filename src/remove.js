@@ -4,12 +4,16 @@ const { compare, compareBy } = require('@kmamal/util/function/compare')
 
 
 const __remove = (arr, start, end, index, fnCmp) => {
-	const lastIndex = end - 1
 	const item = arr[index]
-	const last = arr[lastIndex]
-	arr[index] = last; last[kIndex] = index
-	arr[lastIndex] = item; delete item[kIndex]
-	__bubbleDown(arr, start, lastIndex, index, fnCmp)
+
+	const lastIndex = end - 1
+	if (index !== lastIndex) {
+		arr[index] = arr[lastIndex]
+		__bubbleDown(arr, start, lastIndex, index, fnCmp)
+		arr[lastIndex] = item
+	}
+
+	delete item[kIndex]
 }
 
 
@@ -18,9 +22,13 @@ const removeWith = (arr, index, fnCmp) => {
 	arr.length--
 }
 
-const removeBy = (arr, index, fnMap) => removeWith(arr, index, compareBy(fnMap))
+const removeBy = (arr, index, fnMap) => {
+	removeWith(arr, index, compareBy(fnMap))
+}
 
-const remove = (arr, index) => removeWith(arr, index, compare)
+const remove = (arr, index) => {
+	removeWith(arr, index, compare)
+}
 
 
 module.exports = {
