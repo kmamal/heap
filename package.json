@@ -9,7 +9,7 @@
   "license": "MIT",
   "main": "./src/index.js",
   "exports": {
-    "./tree-indexes": "./src/tree-indexes.js",
+    "./tree-helpers": "./src/tree-helpers.js",
     "./bubble-up": "./src/bubble-up.js",
     ".": "./src/index.js",
     "./pop": "./src/pop.js",

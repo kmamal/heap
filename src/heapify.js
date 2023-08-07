@@ -1,21 +1,24 @@
+const { kIndex, getParent } = require('./tree-helpers')
 const { __bubbleDown } = require('./bubble-down')
-const { getParent } = require('./tree-indexes')
-const { compare } = require('@kmamal/util/function/compare')
+const { compare, compareBy } = require('@kmamal/util/function/compare')
 
-const __heapify = (arr, start, end, fn) => {
+const __heapify = (arr, start, end, fnCmp) => {
 	const first = start + getParent((end - start) - 1)
+	for (let i = start; i < end; i++) { arr[i][kIndex] = i }
 	for (let i = first; i >= start; i--) {
-		__bubbleDown(arr, start, end, i, fn)
+		__bubbleDown(arr, start, end, i, fnCmp)
 	}
 }
 
-const heapifyWith = (arr, fn) => {
-	__heapify(arr, 0, arr.length, fn)
+
+const heapifyWith = (arr, fnCmp) => {
+	__heapify(arr, 0, arr.length, fnCmp)
 }
 
-const heapifyBy = (arr, fn) => heapifyWith(arr, (a, b) => compare(fn(a), fn(b)))
+const heapifyBy = (arr, fnMap) => heapifyWith(arr, compareBy(fnMap))
 
 const heapify = (arr) => heapifyWith(arr, compare)
+
 
 module.exports = {
 	__heapify,

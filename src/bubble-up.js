@@ -1,7 +1,8 @@
-const { getParent } = require('./tree-indexes')
-const { compare } = require('@kmamal/util/function/compare')
+const { kIndex, getParent } = require('./tree-helpers')
+const { compare, compareBy } = require('@kmamal/util/function/compare')
 
-const __bubbleUp = (arr, start, _index, fn) => {
+
+const __bubbleUp = (arr, start, _index, fnCmp) => {
 	let index = _index
 	for (;;) {
 		const parentIndex = start + getParent(index - start)
@@ -9,21 +10,24 @@ const __bubbleUp = (arr, start, _index, fn) => {
 
 		const parent = arr[parentIndex]
 		const value = arr[index]
-		if (fn(parent, value) < 0) { break }
+		if (fnCmp(parent, value) < 0) { break }
 
-		arr[parentIndex] = value
-		arr[index] = parent
+		arr[parentIndex] = value; value[kIndex] = parentIndex
+		arr[index] = parent; parent[kIndex] = index
+
 		index = parentIndex
 	}
 }
 
-const bubbleUpWith = (arr, index, fn) => {
-	__bubbleUp(arr, 0, index, fn)
+
+const bubbleUpWith = (arr, index, fnCmp) => {
+	__bubbleUp(arr, 0, index, fnCmp)
 }
 
-const bubbleUpBy = (arr, index, fn) => bubbleUpWith(arr, index, (a, b) => compare(fn(a), fn(b)))
+const bubbleUpBy = (arr, index, fnMap) => bubbleUpWith(arr, index, compareBy(fnMap))
 
 const bubbleUp = (arr, index) => bubbleUpWith(arr, index, compare)
+
 
 module.exports = {
 	__bubbleUp,
