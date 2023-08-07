@@ -8,4 +8,5 @@ module.exports = {
 	...require('./bubble-up'),
 	...require('./heapify'),
 	...require('./pop'),
+	...require('./remove'),
 }
