@@ -2,7 +2,7 @@ const { kIndex, getParent } = require('./tree-helpers')
 const { compare, compareBy } = require('@kmamal/util/function/compare')
 
 
-const __bubbleUp = (arr, start, _index, fnCmp) => {
+const __bubbleUp = (arr, start, _index, fnCmp, useIndex) => {
 	let index = _index
 	const item = arr[index]
 	for (;;) {
@@ -13,17 +13,17 @@ const __bubbleUp = (arr, start, _index, fnCmp) => {
 		if (fnCmp(parent, item) < 0) { break }
 
 		arr[index] = parent
-		parent[kIndex] = index
+		if (useIndex) { parent[kIndex] = index }
 
 		index = parentIndex
 	}
 	arr[index] = item
-	item[kIndex] = index
+	if (useIndex) { item[kIndex] = index }
 }
 
 
 const bubbleUpWith = (arr, index, fnCmp) => {
-	__bubbleUp(arr, 0, index, fnCmp)
+	__bubbleUp(arr, 0, index, fnCmp, false)
 }
 
 const bubbleUpBy = (arr, index, fnMap) => {

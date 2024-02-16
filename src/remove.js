@@ -3,22 +3,22 @@ const { __bubbleDown } = require('./bubble-down')
 const { compare, compareBy } = require('@kmamal/util/function/compare')
 
 
-const __remove = (arr, start, end, index, fnCmp) => {
+const __remove = (arr, start, end, index, fnCmp, useIndex) => {
 	const item = arr[index]
 
 	const lastIndex = end - 1
 	if (index !== lastIndex) {
 		arr[index] = arr[lastIndex]
-		__bubbleDown(arr, start, lastIndex, index, fnCmp)
+		__bubbleDown(arr, start, lastIndex, index, fnCmp, useIndex)
 		arr[lastIndex] = item
 	}
 
-	delete item[kIndex]
+	if (useIndex) { delete item[kIndex] }
 }
 
 
 const removeWith = (arr, index, fnCmp) => {
-	__remove(arr, 0, arr.length, index, fnCmp)
+	__remove(arr, 0, arr.length, index, fnCmp, false)
 	arr.length--
 }
 

@@ -2,13 +2,13 @@ const { __remove } = require('./remove')
 const { compare, compareBy } = require('@kmamal/util/function/compare')
 
 
-const __pop = (arr, start, end, fnCmp) => {
-	__remove(arr, start, end, 0, fnCmp)
+const __pop = (arr, start, end, fnCmp, useIndex) => {
+	__remove(arr, start, end, 0, fnCmp, useIndex)
 }
 
 
 const popWith = (arr, fnCmp) => {
-	__pop(arr, 0, arr.length, fnCmp)
+	__pop(arr, 0, arr.length, fnCmp, false)
 	return arr.pop()
 }
 
