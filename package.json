@@ -4,7 +4,7 @@
   "description": "heap",
   "repository": {
     "type": "git",
-    "url": "git@github.com:kmamal/heap.git"
+    "url": "git+ssh://git@github.com:kmamal/heap.git"
   },
   "license": "MIT",
   "main": "./src/index.js",

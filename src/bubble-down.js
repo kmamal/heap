@@ -1,8 +1,8 @@
-const { kIndex, getLeft, getRight } = require('./tree-helpers')
+const { getLeft, getRight } = require('./tree-helpers')
 const { compare, compareBy } = require('@kmamal/util/function/compare')
 
 
-const __bubbleDown = (arr, start, end, _index, fnCmp, useIndex) => {
+const __bubbleDown = (arr, start, end, _index, fnCmp, indexKey) => {
 	let index = _index
 	const item = arr[index]
 	for (;;) {
@@ -29,25 +29,25 @@ const __bubbleDown = (arr, start, end, _index, fnCmp, useIndex) => {
 
 		arr[index] = minChild
 
-		if (useIndex) { minChild[kIndex] = index }
+		if (indexKey) { minChild[indexKey] = index }
 
 		index = minChildIndex
 	}
 	arr[index] = item
-	if (useIndex) { item[kIndex] = index }
+	if (indexKey) { item[indexKey] = index }
 }
 
 
-const bubbleDownWith = (arr, fnCmp) => {
-	__bubbleDown(arr, 0, arr.length, fnCmp, false)
+const bubbleDownWith = (arr, fnCmp, indexKey) => {
+	__bubbleDown(arr, 0, arr.length, fnCmp, indexKey)
 }
 
-const bubbleDownBy = (arr, fnMap) => {
-	bubbleDownWith(arr, compareBy(fnMap))
+const bubbleDownBy = (arr, fnMap, indexKey) => {
+	bubbleDownWith(arr, compareBy(fnMap), indexKey)
 }
 
-const bubbleDown = (arr) => {
-	bubbleDownWith(arr, compare)
+const bubbleDown = (arr, indexKey) => {
+	bubbleDownWith(arr, compare, indexKey)
 }
 
 
