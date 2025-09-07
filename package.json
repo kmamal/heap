@@ -23,9 +23,9 @@
     "update-exports": "node ./scripts/update-exports.mjs"
   },
   "dependencies": {
-    "@kmamal/util": "^0.1.13"
+    "@kmamal/util": "^0.2.29"
   },
   "devDependencies": {
-    "@kmamal/testing": "^0.0.24"
+    "@kmamal/testing": "^0.0.33"
   }
 }
