@@ -9,14 +9,14 @@
   "license": "MIT",
   "main": "./src/index.js",
   "exports": {
-    "./tree-helpers": "./src/tree-helpers.js",
     "./bubble-up": "./src/bubble-up.js",
-    ".": "./src/index.js",
     "./pop": "./src/pop.js",
-    "./remove": "./src/remove.js",
+    "./bubble-down": "./src/bubble-down.js",
     "./heapify": "./src/heapify.js",
+    ".": "./src/index.js",
+    "./tree-helpers": "./src/tree-helpers.js",
     "./add": "./src/add.js",
-    "./bubble-down": "./src/bubble-down.js"
+    "./remove": "./src/remove.js"
   },
   "scripts": {
     "test": "npx @kmamal/testing",
