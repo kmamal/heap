@@ -11,6 +11,7 @@
   "exports": {
     "./bubble-up": "./src/bubble-up.js",
     "./pop": "./src/pop.js",
+    "./is-heap": "./src/is-heap.js",
     "./bubble-down": "./src/bubble-down.js",
     "./heapify": "./src/heapify.js",
     ".": "./src/index.js",
@@ -23,9 +24,9 @@
     "update-exports": "node ./scripts/update-exports.mjs"
   },
   "dependencies": {
-    "@kmamal/util": "^0.2.29"
+    "@kmamal/util": "0.2.29"
   },
   "devDependencies": {
-    "@kmamal/testing": "^0.0.33"
+    "@kmamal/testing": "0.0.33"
   }
 }

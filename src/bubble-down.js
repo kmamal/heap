@@ -38,16 +38,16 @@ const __bubbleDown = (arr, start, end, _index, fnCmp, indexKey) => {
 }
 
 
-const bubbleDownWith = (arr, fnCmp, indexKey) => {
-	__bubbleDown(arr, 0, arr.length, fnCmp, indexKey)
+const bubbleDownWith = (arr, index, fnCmp, indexKey) => {
+	__bubbleDown(arr, 0, arr.length, index, fnCmp, indexKey)
 }
 
-const bubbleDownBy = (arr, fnMap, indexKey) => {
-	bubbleDownWith(arr, compareBy(fnMap), indexKey)
+const bubbleDownBy = (arr, index, fnMap, indexKey) => {
+	bubbleDownWith(arr, index, compareBy(fnMap), indexKey)
 }
 
-const bubbleDown = (arr, indexKey) => {
-	bubbleDownWith(arr, compare, indexKey)
+const bubbleDown = (arr, index, indexKey) => {
+	bubbleDownWith(arr, index, compare, indexKey)
 }
 
 

@@ -3,7 +3,7 @@ const { compare, compareBy } = require('@kmamal/util/function/compare')
 
 
 const __pop = (arr, start, end, fnCmp, indexKey) => {
-	__remove(arr, start, end, 0, fnCmp, indexKey)
+	__remove(arr, start, end, start, fnCmp, indexKey)
 }
 
 
